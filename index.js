@@ -1,8 +1,11 @@
 const { Telegraf } = require("telegraf");
 const axios = require("axios");
-const bot = new Telegraf("1679650545:AAGUw3cQ7RAIXjof_X8K0TVhi5c6LXSCQM8");
+const dotenv = require("dotenv");
+dotenv.config();
+const BOT_TOKEN = process.env.BOT_TOKEN;
+const bot = new Telegraf(BOT_TOKEN);
 
-bot.start((ctx) => ctx.reply("Welcome to CSE_Helper bot"));
+bot.start((ctx) => ctx.reply("Welcome to CSE_Helper bo"));
 
 bot.command("binarysearch", (ctx) => {
   ctx.reply("binarysearch");
