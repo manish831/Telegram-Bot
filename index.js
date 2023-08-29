@@ -35,30 +35,20 @@ bot.help((ctx) => ctx.reply("Send me a sticker"));
 bot.hears("hi", (ctx) => ctx.reply("Hey there"));
 
 //you can enter plain text
+const sortingAlgorithms = {
+  bubblesort: "bubblesort.txt",
+  insertionsort: "insertionSort.txt",
+  mergesort: "mergeSort.txt",
+  quicksort: "quickSort.txt",
+};
+
 bot.on("text", (ctx) => {
   const userInput = ctx.message.text.trim().toLowerCase();
-  
-  if (userInput === "bubblesort") {
+
+  if (userInput in sortingAlgorithms) {
+    const algorithmFilePath = sortingAlgorithms[userInput];
     const readData = fs.readFileSync(
-      "./Sorting Function/bubblesort.txt",
-      "utf8"
-    );
-    ctx.reply(readData);
-  } else if (userInput === "insertionsort") {
-    const readData = fs.readFileSync(
-      "./Sorting Function/insertionSort.txt",
-      "utf8"
-    );
-    ctx.reply(readData);
-  } else if (userInput === "mergesort") {
-    const readData = fs.readFileSync(
-      "./Sorting Function/mergeSort.txt",
-      "utf8"
-    );
-    ctx.reply(readData);
-  } else if (userInput === "quicksort") {
-    const readData = fs.readFileSync(
-      "./Sorting Function/Sort.txt",
+      `./Sorting Function/${algorithmFilePath}`,
       "utf8"
     );
     ctx.reply(readData);
@@ -66,6 +56,7 @@ bot.on("text", (ctx) => {
     ctx.reply("Invalid command.");
   }
 });
+
 bot.on("sticker", (ctx) => {
   ctx.reply("❤️");
 });
