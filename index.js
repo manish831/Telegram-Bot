@@ -1,14 +1,54 @@
 const { Telegraf } = require("telegraf");
 const axios = require("axios");
 const dotenv = require("dotenv");
+const fs = require("fs");
 dotenv.config();
 const BOT_TOKEN = process.env.BOT_TOKEN;
 const bot = new Telegraf(BOT_TOKEN);
 
-bot.start((ctx) => ctx.reply("Welcome to CSE_Helper bo"));
+bot.start((ctx) => ctx.reply("Welcome to CSE_Helper bot"));
 
 bot.command("binarysearch", (ctx) => {
   ctx.reply("binarysearch");
+});
+bot.help((ctx) => ctx.reply("Send me a sticker"));
+bot.hears("hi", (ctx) => ctx.reply("Hey there"));
+
+bot.command("bubblesort.trim().toLowerCase() === bubblesort", (ctx) => {
+  const readData = fs.readFileSync("./bubblesort.txt", "utf8");
+  ctx.reply(readData);
+});
+//you can enter plain text
+bot.on("text", (ctx) => {
+  const userInput = ctx.message.text.trim().toLowerCase();
+  
+  if (userInput === "bubblesort") {
+    const readData = fs.readFileSync(
+      "./Sorting Function/bubblesort.txt",
+      "utf8"
+    );
+    ctx.reply(readData);
+  } else if (userInput === "insertionsort") {
+    const readData = fs.readFileSync(
+      "./Sorting Function/insertionSort.txt",
+      "utf8"
+    );
+    ctx.reply(readData);
+  } else if (userInput === "mergesort") {
+    const readData = fs.readFileSync(
+      "./Sorting Function/mergeSort.txt",
+      "utf8"
+    );
+    ctx.reply(readData);
+  } else if (userInput === "quicksort") {
+    const readData = fs.readFileSync(
+      "./Sorting Function/quickSort.txt",
+      "utf8"
+    );
+    ctx.reply(readData);
+  } else {
+    ctx.reply("Invalid command.");
+  }
 });
 
 bot.command("lettercombination", async function (ctx) {
