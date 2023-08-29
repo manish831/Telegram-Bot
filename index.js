@@ -7,17 +7,33 @@ const BOT_TOKEN = process.env.BOT_TOKEN;
 const bot = new Telegraf(BOT_TOKEN);
 
 bot.start((ctx) => ctx.reply("Welcome to CSE_Helper bot"));
-
 bot.command("binarysearch", (ctx) => {
   ctx.reply("binarysearch");
+});
+bot.command("binarysearch22", (ctx) => {
+  ctx.reply("binarysearch2");
+});
+bot.command("quotes", (ctx) => {
+  axios
+    .get("https://api.quotable.io/random")
+    .then((response) => {
+      // Extract quote and author from the response data
+      const quote = response.data.content;
+      const author = response.data.author;
+      const replyText = `"${quote}" - ${author}`;
+      console.log(replyText);
+
+      // Reply to the user with the extracted quote
+      ctx.reply(replyText);
+    })
+    .catch((error) => {
+      console.error(error);
+      return ctx.reply("An error occurred while fetching data.");
+    });
 });
 bot.help((ctx) => ctx.reply("Send me a sticker"));
 bot.hears("hi", (ctx) => ctx.reply("Hey there"));
 
-bot.command("bubblesort.trim().toLowerCase() === bubblesort", (ctx) => {
-  const readData = fs.readFileSync("./bubblesort.txt", "utf8");
-  ctx.reply(readData);
-});
 //you can enter plain text
 bot.on("text", (ctx) => {
   const userInput = ctx.message.text.trim().toLowerCase();
@@ -42,7 +58,7 @@ bot.on("text", (ctx) => {
     ctx.reply(readData);
   } else if (userInput === "quicksort") {
     const readData = fs.readFileSync(
-      "./Sorting Function/quickSort.txt",
+      "./Sorting Function/Sort.txt",
       "utf8"
     );
     ctx.reply(readData);
@@ -50,23 +66,9 @@ bot.on("text", (ctx) => {
     ctx.reply("Invalid command.");
   }
 });
-
-bot.command("lettercombination", async function (ctx) {
-  try {
-    const response = await axios.get(
-      "https://raw.githubusercontent.com/manish831/LeetCode-Practice/main/0017-letter-combinations-of-a-phone-number/0017-letter-combinations-of-a-phone-number.cpp?token=GHSAT0AAAAAACEIDAUZBBQCGUHYUHPDSV2GZHFYQEA"
-    );
-    return ctx.reply(response.data);
-  } catch (error) {
-    console.error(error);
-    return ctx.reply("An error occurred while fetching data.");
-  }
-});
-
 bot.on("sticker", (ctx) => {
   ctx.reply("❤️");
 });
-
 // Handle the 409 error
 bot.catch((err, ctx) => {
   if (err.code === 409) {
