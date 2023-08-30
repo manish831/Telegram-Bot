@@ -1,0 +1,12 @@
+Algorithm	                 Time Complexity
+Bubble sort                 	O(n^2)
+Selection sort	                O(n^2)
+Insertion sort	                O(n^2)
+Merge sort	                    O(n log n)
+Quick sort	                    O(n log n)
+Heap sort	                    O(n log n)
+Radix sort	                    O(nk), where n is the number of elements and k is the number of digits in the radix sort
+Timsort	                        O(n log n)
+
+
+Note: The time complexity listed is for the worst-case scenario, and	

@@ -1,17 +1,13 @@
 const { Telegraf } = require("telegraf");
 const axios = require("axios");
-const dotenv = require("dotenv");
 const fs = require("fs");
+const dotenv = require("dotenv");
 dotenv.config();
 const BOT_TOKEN = process.env.BOT_TOKEN;
 const bot = new Telegraf(BOT_TOKEN);
-
 bot.start((ctx) => ctx.reply("Welcome to CSE_Helper bot"));
 bot.command("binarysearch", (ctx) => {
   ctx.reply("binarysearch");
-});
-bot.command("binarysearch22", (ctx) => {
-  ctx.reply("binarysearch2");
 });
 bot.command("quotes", (ctx) => {
   axios
@@ -21,7 +17,7 @@ bot.command("quotes", (ctx) => {
       const quote = response.data.content;
       const author = response.data.author;
       const replyText = `"${quote}" - ${author}`;
-      console.log(replyText);
+      // console.log(replyText);
 
       // Reply to the user with the extracted quote
       ctx.reply(replyText);
@@ -34,12 +30,13 @@ bot.command("quotes", (ctx) => {
 bot.help((ctx) => ctx.reply("Send me a sticker"));
 bot.hears("hi", (ctx) => ctx.reply("Hey there"));
 
-//you can enter plain text
+// you can enter plain text
 const sortingAlgorithms = {
   bubblesort: "bubblesort.txt",
   insertionsort: "insertionSort.txt",
   mergesort: "mergeSort.txt",
   quicksort: "quickSort.txt",
+  selectionsort: "selectionSort.txt"
 };
 
 bot.on("text", (ctx) => {
@@ -67,5 +64,4 @@ bot.catch((err, ctx) => {
   }
   console.error(err);
 });
-
 bot.launch();
