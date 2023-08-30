@@ -17,8 +17,6 @@ bot.command("quotes", (ctx) => {
       const quote = response.data.content;
       const author = response.data.author;
       const replyText = `"${quote}" - ${author}`;
-      // console.log(replyText);
-
       // Reply to the user with the extracted quote
       ctx.reply(replyText);
     })
