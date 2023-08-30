@@ -54,6 +54,9 @@ bot.on("text", (ctx) => {
       "utf8"
     );
     ctx.reply(readData);
+  } else if (userInput === "timecomplexity" ) {
+    const readData = fs.readFileSync("timeComplexity.txt","utf8");
+    ctx.reply(readData);
   } else {
     ctx.reply("Invalid command.");
   }
