@@ -6,9 +6,6 @@ dotenv.config();
 const BOT_TOKEN = process.env.BOT_TOKEN;
 const bot = new Telegraf(BOT_TOKEN);
 bot.start((ctx) => ctx.reply("Welcome to CSE_Helper bot"));
-bot.command("binarysearch", (ctx) => {
-  ctx.reply("binarysearch");
-});
 bot.command("quotes", (ctx) => {
   axios
     .get("https://api.quotable.io/random")
@@ -27,14 +24,17 @@ bot.command("quotes", (ctx) => {
 });
 bot.help((ctx) => ctx.reply("Send me a sticker"));
 bot.hears("hi", (ctx) => ctx.reply("Hey there"));
-
 // you can enter plain text
 const sortingAlgorithms = {
   bubblesort: "bubblesort.txt",
   insertionsort: "insertionSort.txt",
   mergesort: "mergeSort.txt",
   quicksort: "quickSort.txt",
-  selectionsort: "selectionSort.txt"
+  selectionsort: "selectionSort.txt",
+};
+const searchingAlgorithms = {
+  binarysearch: "binarySearch.txt",
+  linearsearch: "linearSearch.txt",
 };
 
 bot.on("text", (ctx) => {
@@ -44,6 +44,13 @@ bot.on("text", (ctx) => {
     const algorithmFilePath = sortingAlgorithms[userInput];
     const readData = fs.readFileSync(
       `./Sorting Function/${algorithmFilePath}`,
+      "utf8"
+    );
+    ctx.reply(readData);
+  } else if (userInput in searchingAlgorithms) {
+    const algorithmFilePath = searchingAlgorithms[userInput];
+    const readData = fs.readFileSync(
+      `./searching/${algorithmFilePath}`,
       "utf8"
     );
     ctx.reply(readData);
