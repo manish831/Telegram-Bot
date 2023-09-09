@@ -1,0 +1,56 @@
+/* A binary tree Node
+struct Node
+{
+    int data;
+    Node* left, * right;
+}; */
+
+class Solution {
+    private:
+    void traverseLeft(Node *root,vector<int> &ans){
+        if((!root) ||(!root->left and !root->right)) return;
+        ans.push_back(root->data);
+        if(root->left)
+        traverseLeft(root->left,ans);
+        else 
+        traverseLeft(root->right,ans);
+    }
+     
+        void traverseLeaf(Node *root,vector<int> &ans){
+        if(!root) return;
+        if(!root->left and !root->right){
+            ans.push_back(root->data);
+             return;
+        }
+          traverseLeaf(root->left,ans);
+          traverseLeaf(root->right,ans);
+    }
+
+        void traverseRight(Node *root,vector<int> &ans){
+        if((!root) ||(!root->left and !root->right)) return;
+        if(root->right) traverseRight(root->right,ans);
+        else traverseRight(root->left,ans);
+                ans.push_back(root->data);
+    }
+
+public:
+    vector <int> boundary(Node *root)
+    {
+        //Your code here
+        vector<int>ans;
+        if(root==NULL) return ans;
+        ans.push_back(root->data);
+        traverseLeft(root->left,ans);
+        traverseLeaf(root->left,ans);
+        traverseLeaf(root->right,ans);
+        traverseRight(root->right,ans);
+        return ans;
+        
+    }
+};
+
+
+
+/*
+Expected Time Complexity: O(N). 
+Expected Auxiliary Space: O(Height of the Tree). */
