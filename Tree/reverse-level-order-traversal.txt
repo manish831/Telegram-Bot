@@ -1,0 +1,46 @@
+/* A binary tree node
+struct Node
+{
+    int data;
+    struct Node* left;
+    struct Node* right;
+    
+    Node(int x){
+        data = x;
+        left = right = NULL;
+    }
+};
+ */
+
+class Solution
+{
+    public:
+    //Function to return the level order traversal of a tree.
+   vector<int> reverseLevelOrder(Node* root)
+    {
+      //Your code here
+      vector<int>res;
+      stack<int>s;
+      if(root==NULL) return res;
+      queue<Node*>q;
+      q.push(root);
+      while(!q.empty()){
+        Node *temp=q.front();
+        q.pop();
+        s.push(temp->data);
+
+        if(temp->right !=NULL){
+          q.push(temp->right);
+        }
+         if(temp->left !=NULL){
+          q.push(temp->left);
+        }
+
+      }
+      while(!s.empty()){
+        res.push_back(s.top());
+        s.pop();
+      }
+      return res;
+    }
+};
