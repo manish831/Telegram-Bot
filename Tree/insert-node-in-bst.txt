@@ -26,14 +26,13 @@ class Solution
             node->left=insert(node->left,data);
             return node;
     }
-
 };
 
 Best case Complexities =>
-Time Complexity = O(log h)  , h= Height of BST
+Time Complexity = O(log h) , h= Height of BST
 Space Complexity = O(1) 
 
 Worst Case Complexities =>
 
-Time Complexity = O(h) 
+Time Complexity = O(h),
 Space Complexity = O(1) 
