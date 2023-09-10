@@ -1,0 +1,32 @@
+/*
+struct Node {
+    int data;
+    struct Node* left;
+    struct Node* right;
+};
+// Utility function to create a new Tree Node
+Node* newNode(int val) {
+    Node* temp = new Node;
+    temp->data = val;
+    temp->left = NULL;
+    temp->right = NULL;
+
+    return temp;
+}
+*/
+
+int order(Node *root){
+    if(root==NULL) return -1;
+    if(root->left==NULL and root->right==NULL) return root->data;
+    else if(root->left==NULL and root->right !=NULL) return root->data;
+    order(root->left);
+}
+int minValue(Node* root) {
+    // Code here
+    return order(root);
+}
+
+/*
+Time Complexity = O(h)
+Space Complexity = O(1)
+*/
