@@ -9,6 +9,4 @@ Radix sort	                    O(nk), where n is the number of elements and k is
 
 
 Timsort	                        O(n log n)
-
-
 Note: The time complexity listed is for the worst-case scenario, and	
